@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .errors {
+        color: red;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Design your taco!</h1>
+    <img th:src="@{/images/taco.jpg}" />
+
+    <h3>Design your taco</h3>
+
+    <form action="/design" method="post" th:object="${taco}">
+      <h4>Wraps:</h4>
+      <div class="ingredient_groub" id="wrap" th:each="ingredient : ${wrap}">
+        <input
+          type="checkbox"
+          th:value="${ingredient.id}"
+          th:field="*{ingredients}"
+        />
+        <span th:text="${ingredient.name}"></span>
+      </div>
+      <h4>Protien:</h4>
+      <div class="ingredient_groub" id="wrap" th:each="ingredient : ${protein}">
+        <input
+          type="checkbox"
+          th:value="${ingredient.id}"
+          th:field="*{ingredients}"
+        />
+        <span th:text="${ingredient.name}"></span>
+      </div>
+      <h4>Veggies:</h4>
+      <div class="ingredient_groub" id="wrap" th:each="ingredient : ${veggies}">
+        <input
+          type="checkbox"
+          th:value="${ingredient.id}"
+          th:field="*{ingredients}"
+        />
+        <span th:text="${ingredient.name}"></span>
+      </div>
+      <h4>Cheese:</h4>
+      <div class="ingredient_groub" id="wrap" th:each="ingredient : ${cheese}">
+        <input
+          type="checkbox"
+          th:value="${ingredient.id}"
+          th:field="*{ingredients}"
+        />
+        <span th:text="${ingredient.name}"></span>
+      </div>
+      <h4>Sauce:</h4>
+      <div class="ingredient_groub" id="wrap" th:each="ingredient : ${sauce}">
+        <input
+          type="checkbox"
+          th:value="${ingredient.id}"
+          th:field="*{ingredients}"
+        />
+        <span th:text="${ingredient.name}"></span>
+      </div>
+      <span class="errors"
+        th:if="${#fields.hasErrors('ingredients')}"
+        th:errors="*{ingredients}"
+      ></span>
+      <br />
+      <h4>Name:</h4>
+      <input type="text" th:field="*{name}"/>
+      <span
+        class="errors"
+        th:field="*{name}"
+        th:if="${#fields.hasErrors('name')}"
+        th:errors="*{name}"
+        >name error</span
+      >
+      <br />
+      <input type="submit" value="Submit your Taco" />
+    </form>
+  </body>
+</html>
